@@ -1,0 +1,440 @@
+{   
+    "swagger" : "2.0",
+    "info" : 
+    {
+        "version" : "v1",
+        "title" :  "Employee Payroll",
+        "descreption" :  "CRUD operations on Employee Data"
+    },
+
+    "host" : "localhost:3000",
+    "basePath" : "/",
+    "tags" : 
+    [
+        {
+            "name" : "Express",
+            "descreption" : "Creating User"
+        }
+    ],
+    "schemes" : 
+    [
+        "http"
+    ],
+    "consumes" : 
+    [
+        "application/json"
+    ],
+    "produces" : 
+    [
+        "application/json"
+    ],
+    "paths": 
+    {
+        "/register": 
+        {
+            "post": 
+            {
+                "tags": ["REGISTER AND LOGIN"],
+                "description": "Register User",
+                "parameters": 
+                [
+                    {
+                        "name": "Register",
+                        "in": "body",
+                        "description": "Enter deatails to Register New User",
+                        "required" : false,
+                        "schema": 
+                        {
+                            "$ref": "#/definitions/Register"
+                        }
+                    }
+                ],
+                "produces": 
+                [
+                    "application/json"
+                ],
+                "responses": 
+                {
+                    "201": 
+                    {
+                        "description": "New user is created"
+                    },
+                    "500": 
+                    {
+                        "description": "Internal server error"
+                    }
+                }
+            },
+
+            "security": [
+                {
+                  "JWT": []
+                }
+              ]
+
+        },
+
+        
+        "/login": 
+        {
+
+            "post": 
+            {
+                "tags": ["REGISTER AND LOGIN"],
+                "description": "Log in User",
+                "parameters": 
+                [
+                    {
+                        "name": "Login",
+                        "in": "body",
+                        "description": "log in user using emailID and password",
+                        "schema": 
+                        {
+                            "$ref": "#/definitions/loging"
+                        }
+                    }
+                ],
+                "produces": 
+                [
+                    "application/json"
+                ],
+                "responses": 
+                {
+                    "201": 
+                    {
+                        "description": "New user is created"
+                    },
+                    "500": 
+                    {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+
+
+        "/emp/save": 
+        {
+            "post": 
+            {
+                "tags": ["Employee Details API'S"],
+                "description": "Save employee data",
+                "parameters": 
+                [
+                    {
+                        "name": "Save Details",
+                        "in": "body",
+                        "description": "Save Employee details",
+                        "schema": 
+                        {
+                            "$ref": "#/definitions/Employee_Details"
+                        }
+                    }
+                ],
+                "produces": 
+                [
+                    "application/json"
+                ],
+                "responses": 
+                {
+                    "201": 
+                    {
+                        "description": "New user is created"
+                    },
+                    "500": 
+                    {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                      "JWT": []
+                    }
+                  ]
+            }
+        },
+
+        "/emp/getall": 
+        {
+            "get": 
+            {
+                "tags": ["Employee Details API'S"],
+                "description": "Get All Employee Data",
+                "parameters": 
+                [
+                    {
+                        "name": "get all",
+                        "description": "Get all Employee details Using token"
+                        
+                    }
+                ],
+                "produces": 
+                [
+                    "application/json"
+                ],
+                "responses": 
+                {
+                    "201": 
+                    {
+                        "description": "New user is created"
+                    },
+                    "500": 
+                    {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                      "JWT": []
+                    }
+                  ]
+            }
+
+
+        },
+    
+
+        "/emp/{_key}": 
+        {
+            "get": 
+            {
+                "tags": ["Employee Details API'S"],
+                "description": "GET Employee details BY ID",
+                "parameters": 
+                [
+                    {
+                        "name": "_key",
+                        "in": "path",
+                        "description": "Get specific employee Details using _key  and Token"
+                    }
+                ],
+                "produces": 
+                [
+                    "application/json"
+                ],
+                "responses": 
+                {
+                    "201": 
+                    {
+                        "description": "New user is created"
+                    },
+                    "500": 
+                    {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                      "JWT": []
+                    }
+                  ]
+            },
+
+            "put": 
+            {
+                "tags": ["Employee Details API'S"],
+                "description": "UPDATE NOTE",
+                "parameters": 
+                [   
+                    {
+                        "name": "_key",
+                        "in": "path",
+                        "description": "Update specific note using NoteID and Token"
+                        
+                    },
+
+                    {
+                        "name": "Update",
+                        "in": "body",
+                        "description": "Update specific Employe Details using _key and Token",
+                        "schema": 
+                        {
+                            "$ref": "#/definitions/Employee_Details"
+                        }
+                    }
+                ],
+                "produces": 
+                [
+                    "application/json"
+                ],
+                "responses": 
+                {
+                    "201": 
+                    {
+                        "description": "New user is created"
+                    },
+                    "500": 
+                    {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                      "JWT": []
+                    }
+                  ]
+            },
+
+            "delete": 
+            {
+                "tags": ["Employee Details API'S"],
+                "description": "DELETE Employee Data",
+                "parameters": 
+                [
+                    {
+                        "name": "_key",
+                        "in": "path",
+                        "description": "Delete Employee Details Using _key and token"
+                        
+                    }
+                ],
+                "produces": 
+                [
+                    "application/json"
+                ],
+                "responses": 
+                {
+                    "201": 
+                    {
+                        "description": "New user is created"
+                    },
+                    "500": 
+                    {
+                        "description": "Internal server error"
+                    }
+                },
+                "security": [
+                    {
+                      "JWT": []
+                    }
+                  ]
+            }
+
+
+        }
+    },
+
+    "securityDefinitions": {
+        "JWT": {
+          "type": "apiKey",
+          "name": "Authorization",
+          "in": "header"
+        }
+      },
+
+      "definitions": 
+      {
+          "Register": 
+          {
+              "type": "object",
+              "properties": 
+              {
+                  "firstName": 
+                  {
+                      "type": "string"
+                  },
+                  "lastName": 
+                  {
+                      "type": "string"
+                  },
+                  "emailID": 
+                  {
+                      "type": "string"
+                  },
+                  "password": 
+                  {
+                      "type": "string"
+                  }
+              }
+          },
+
+
+          "loging":
+          {
+            "type": "object",
+  
+                  "properties":
+                  {
+                      "emailID": 
+                      {
+                          "type": "string"
+                      },
+                      "password": 
+                      {
+                          "type": "string"
+                      }
+                  }
+  
+          },
+
+
+          
+        "Employee_Details":
+        {
+          "type": "object",
+
+                "properties":
+                {
+
+                    "firstName" :{
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "emailID": {
+                        "type": "string"
+                    },
+                    "city" : {
+                        "type": "string"
+                    },
+                    "salary" : {
+                        "type": "number"
+                    },
+                    "mobile" : {
+                        "type": "number"
+                    },
+                    "company" : {
+                        "type": "string"
+                    },
+                    "designation": {
+                        "type": "string"
+                    }
+
+                   
+                }
+
+        }
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+      
+
+
+
+
+    
+
+
+    
